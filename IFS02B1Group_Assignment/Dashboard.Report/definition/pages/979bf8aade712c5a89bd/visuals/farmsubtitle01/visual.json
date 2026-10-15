@@ -1,0 +1,39 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
+  "name": "farmsubtitle01",
+  "position": {
+    "x": 72,
+    "y": 66,
+    "z": 16010,
+    "height": 24,
+    "width": 1500,
+    "tabOrder": 16010
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "Fresh produce sales, orders and delivery insights",
+                    "textStyle": {
+                      "fontSize": "12.5pt",
+                      "color": "#E7F5E9",
+                      "fontFamily": "Segoe UI"
+                    }
+                  }
+                ],
+                "horizontalTextAlignment": "left"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

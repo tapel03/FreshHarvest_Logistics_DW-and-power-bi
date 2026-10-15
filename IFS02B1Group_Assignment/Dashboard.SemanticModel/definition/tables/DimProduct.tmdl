@@ -1,0 +1,81 @@
+table DimProduct
+	lineageTag: 2466424c-3316-4044-b090-31d5869f5130
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 446eea40-dd25-4105-8020-fae68ee3a3ba
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceProductID
+		dataType: int64
+		formatString: 0
+		lineageTag: e2e7b73f-5c88-4297-8537-181fa4ab938b
+		summarizeBy: none
+		sourceColumn: SourceProductID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductName
+		dataType: string
+		lineageTag: 9fde4870-afdd-44ca-ae16-e3769aca18a8
+		summarizeBy: none
+		sourceColumn: ProductName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CategoryName
+		dataType: string
+		lineageTag: 9c44de44-176a-4f09-90a5-e9d41443fb92
+		summarizeBy: none
+		sourceColumn: CategoryName
+
+		annotation SummarizationSetBy = Automatic
+
+	column StorageRequirement
+		dataType: string
+		lineageTag: dc1d8b0c-1d47-4640-a977-be95f983ae7d
+		summarizeBy: none
+		sourceColumn: StorageRequirement
+
+		annotation SummarizationSetBy = Automatic
+
+	column ShelfLifeDays
+		dataType: int64
+		formatString: 0
+		lineageTag: 1f12b123-dbb3-4c2a-9550-6fc27d191f50
+		summarizeBy: none
+		sourceColumn: ShelfLifeDays
+
+		annotation SummarizationSetBy = Automatic
+
+	column PerishabilityBand
+		dataType: string
+		lineageTag: f19dc81a-ce8c-4b93-bb19-ee67de658852
+		summarizeBy: none
+		sourceColumn: PerishabilityBand
+
+		annotation SummarizationSetBy = Automatic
+
+	column Unit
+		dataType: string
+		lineageTag: 181b7e42-3195-4995-a33f-00c28bce0efe
+		summarizeBy: none
+		sourceColumn: Unit
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimProduct = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("(localdb)\MSSQLLocalDB", "FreshHarvest_DW"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "DimProduct"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

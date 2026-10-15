@@ -1,0 +1,40 @@
+relationship 2c7a1b62-c631-4b0c-8127-cc803082deee
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimCustomer.RegistrationDate
+	toColumn: LocalDateTable_f29bbb22-c782-419c-83b1-5a2859741333.Date
+
+relationship 2ccd5ca0-c6b8-4da2-b9ad-75c05b632ce8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DimDate.FullDate
+	toColumn: LocalDateTable_dc4b5f02-d542-41f9-92e5-fccfc93dcfb6.Date
+
+relationship e8b9b677-1a5c-4650-94fc-3f9d21bc26b5
+	fromColumn: FactSales.CustomerKey
+	toColumn: DimCustomer.CustomerKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 8b06254f-aae2-452a-a123-fdebcc4a8003
+	fromColumn: FactSales.DateKey
+	toColumn: DimDate.DateKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 1b119051-c802-410d-9112-19b3eb40fda6
+	fromColumn: FactSales.ProductKey
+	toColumn: DimProduct.ProductKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship 7f6ad1ad-d40f-4eb4-8d37-7662a62c09d2
+	fromColumn: FactSales.RouteKey
+	toColumn: DimRoute.RouteKey
+
+	annotation PBI_IsFromSource = FS
+
+relationship ea3c5001-e442-4b2c-a38d-aba46c271db2
+	fromColumn: FactSales.StatusKey
+	toColumn: DimStatus.StatusKey
+
+	annotation PBI_IsFromSource = FS
+

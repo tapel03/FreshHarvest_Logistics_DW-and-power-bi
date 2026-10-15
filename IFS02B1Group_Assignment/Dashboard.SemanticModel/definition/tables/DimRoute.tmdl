@@ -1,0 +1,75 @@
+table DimRoute
+	lineageTag: 774cf3bc-2280-4d13-a711-131a3482487c
+
+	column RouteKey
+		dataType: int64
+		formatString: 0
+		lineageTag: f187e513-6427-4a46-a65b-90dc0905ac6d
+		summarizeBy: none
+		sourceColumn: RouteKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceRouteID
+		dataType: int64
+		formatString: 0
+		lineageTag: 2701f01a-aad9-4a1b-ac17-5b3169b134df
+		summarizeBy: none
+		sourceColumn: SourceRouteID
+
+		annotation SummarizationSetBy = Automatic
+
+	column StartLocation
+		dataType: string
+		lineageTag: 064bb932-9bfd-4020-a904-8aa2943e2a98
+		summarizeBy: none
+		sourceColumn: StartLocation
+
+		annotation SummarizationSetBy = Automatic
+
+	column EndLocation
+		dataType: string
+		lineageTag: b29e8b57-16de-4610-8ac1-c33f26663606
+		summarizeBy: none
+		sourceColumn: EndLocation
+
+		annotation SummarizationSetBy = Automatic
+
+	column DistanceKm
+		dataType: double
+		lineageTag: 610c85f3-68a2-4ece-b7d9-45df00aaccc8
+		summarizeBy: none
+		sourceColumn: DistanceKm
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DistanceBand
+		dataType: string
+		lineageTag: b8a6026e-fa40-45f3-85f8-60589644ea71
+		summarizeBy: none
+		sourceColumn: DistanceBand
+
+		annotation SummarizationSetBy = Automatic
+
+	column EstimatedDurationMinutes
+		dataType: int64
+		formatString: 0
+		lineageTag: e0d8bb7b-aad2-478b-8879-1a33c817b35b
+		summarizeBy: none
+		sourceColumn: EstimatedDurationMinutes
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimRoute = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("(localdb)\MSSQLLocalDB", "FreshHarvest_DW"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "DimRoute"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

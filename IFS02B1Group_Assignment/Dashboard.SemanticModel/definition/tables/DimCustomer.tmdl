@@ -1,0 +1,73 @@
+table DimCustomer
+	lineageTag: 6f656760-d122-475b-8b74-0f9c293a3eb7
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ed8273e-f58f-4b1c-a48f-4a163e711de0
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SourceCustomerID
+		dataType: int64
+		formatString: 0
+		lineageTag: ba53fb01-bb61-424e-911f-76f7ce7214f3
+		summarizeBy: count
+		sourceColumn: SourceCustomerID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerName
+		dataType: string
+		lineageTag: 5e72d7cd-0755-4319-be58-f472a6a821a3
+		summarizeBy: none
+		sourceColumn: CustomerName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerType
+		dataType: string
+		lineageTag: 152816be-c611-4085-b6e6-6562750b7ccc
+		summarizeBy: none
+		sourceColumn: CustomerType
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegistrationDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e1ec330f-34ea-437a-903c-2f4f47dcb3d9
+		summarizeBy: none
+		sourceColumn: RegistrationDate
+
+		variation Variation
+			isDefault
+			relationship: 2c7a1b62-c631-4b0c-8127-cc803082deee
+			defaultHierarchy: LocalDateTable_f29bbb22-c782-419c-83b1-5a2859741333.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column RegistrationYear
+		dataType: int64
+		formatString: 0
+		lineageTag: d79d475d-1a41-4f01-a30f-f932d7e0e4df
+		summarizeBy: sum
+		sourceColumn: RegistrationYear
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimCustomer = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("(localdb)\MSSQLLocalDB", "FreshHarvest_DW"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "DimCustomer"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

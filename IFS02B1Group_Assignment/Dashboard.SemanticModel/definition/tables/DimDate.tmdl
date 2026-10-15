@@ -1,0 +1,92 @@
+table DimDate
+	lineageTag: 233d6bfe-50b9-4e75-88a6-e3d122c313fd
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 73e043fb-23fe-46e7-90fc-45ea6e618505
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column FullDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 3b3b9844-0fb2-4a42-94cc-27066e5a7e2f
+		summarizeBy: none
+		sourceColumn: FullDate
+
+		variation Variation
+			isDefault
+			relationship: 2ccd5ca0-c6b8-4da2-b9ad-75c05b632ce8
+			defaultHierarchy: LocalDateTable_dc4b5f02-d542-41f9-92e5-fccfc93dcfb6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DayNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 8fc02317-de83-4666-a939-e4631ace3952
+		summarizeBy: sum
+		sourceColumn: DayNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column DayName
+		dataType: string
+		lineageTag: de0f8cce-c282-4927-893c-2f302b923e09
+		summarizeBy: none
+		sourceColumn: DayName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 670cf637-4d06-4454-a8bb-b9ab301e5a50
+		summarizeBy: sum
+		sourceColumn: MonthNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: 9e6fc000-6772-431b-8f2c-c6620937acca
+		summarizeBy: none
+		sourceColumn: MonthName
+		sortByColumn: MonthNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuarterNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 90f27ec1-4ef8-4700-9600-e2364e403d78
+		summarizeBy: sum
+		sourceColumn: QuarterNo
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearNo
+		dataType: int64
+		formatString: 0
+		lineageTag: 93b9b3f9-32cb-4dc9-80ce-924be4d07fb2
+		summarizeBy: sum
+		sourceColumn: YearNo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimDate = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("(localdb)\MSSQLLocalDB", "FreshHarvest_DW"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "DimDate"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

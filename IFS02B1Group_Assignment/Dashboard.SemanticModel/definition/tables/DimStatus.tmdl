@@ -1,0 +1,55 @@
+table DimStatus
+	lineageTag: 5162104d-d049-4cc7-ab08-d62649b0270a
+
+	column StatusKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e003d342-e21a-4c42-a225-72dbb0867d4d
+		summarizeBy: none
+		sourceColumn: StatusKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderStatus
+		dataType: string
+		lineageTag: fc026b92-749a-4f80-a3a9-a3b1b65bfc4f
+		summarizeBy: none
+		sourceColumn: OrderStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column DeliveryStatus
+		dataType: string
+		lineageTag: 9b42047f-31a1-40f2-bfcf-0f79a62ca7f5
+		summarizeBy: none
+		sourceColumn: DeliveryStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column PaymentStatus
+		dataType: string
+		lineageTag: 4a9d9480-0293-4482-a8fb-8a7484742d60
+		summarizeBy: none
+		sourceColumn: PaymentStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column FulfilmentStage
+		dataType: string
+		lineageTag: ea4a30d3-27b2-4e30-92f7-01559559e190
+		summarizeBy: none
+		sourceColumn: FulfilmentStage
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DimStatus = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("(localdb)\MSSQLLocalDB", "FreshHarvest_DW"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "DimStatus"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

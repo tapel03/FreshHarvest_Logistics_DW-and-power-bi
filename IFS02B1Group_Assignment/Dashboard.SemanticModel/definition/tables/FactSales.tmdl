@@ -1,0 +1,147 @@
+table FactSales
+	lineageTag: 77181f70-ca8b-4590-b24c-dcb478f1e31a
+
+	measure 'Total Sales Revenue' =
+			
+			SUM(FactSales[SalesAmount])
+		formatString: "R"#,0.00;-"R"#,0.00;"R"#,0.00
+		lineageTag: fc4bc099-2c0f-4c7b-b7a3-354820a19a54
+
+		annotation PBI_FormatHint = {"currencyCulture":"st-ZA"}
+
+	measure 'Total Orders' =
+			
+			DISTINCTCOUNT(FactSales[OrderID])
+		formatString: 0
+		lineageTag: f8325177-8552-465e-9546-b2c06b63e907
+
+	measure 'Average Order Value' =
+			
+			DIVIDE(
+			    [Total Sales Revenue],
+			    [Total Orders]
+			)
+		formatString: "R"#,0.00;-"R"#,0.00;"R"#,0.00
+		lineageTag: 71442713-be32-49be-9b2f-f1f9f70e7724
+
+		annotation PBI_FormatHint = {"currencyCulture":"st-ZA"}
+
+	measure 'Total Quantity Sold' =
+			
+			SUM(FactSales[QuantitySold])
+		formatString: #,0.##
+		lineageTag: 165e8879-77d9-4610-b58c-80e6dd431d32
+
+	column SalesKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 8717050d-fb73-4340-a5ab-ae5b953896f9
+		summarizeBy: count
+		sourceColumn: SalesKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DateKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 1166d435-d613-49f0-8d5c-6bb90ceb08c3
+		summarizeBy: none
+		sourceColumn: DateKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProductKey
+		dataType: int64
+		formatString: 0
+		lineageTag: e450c8ec-4fb5-4156-bc40-0494de0a3919
+		summarizeBy: none
+		sourceColumn: ProductKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 3e9071fa-3930-43fb-8635-6cdbb5848fea
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column RouteKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 098c43e2-4738-4d11-aa0f-9cfa0f1a7f73
+		summarizeBy: none
+		sourceColumn: RouteKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column StatusKey
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a8a8278-29b6-41f2-ae11-5055fb058323
+		summarizeBy: none
+		sourceColumn: StatusKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column OrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 86228d62-94c8-4496-b944-139b690b34ea
+		summarizeBy: count
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column InvoiceID
+		dataType: int64
+		formatString: 0
+		lineageTag: c29396e6-ddea-4dc0-b97f-412468f85390
+		summarizeBy: count
+		sourceColumn: InvoiceID
+
+		annotation SummarizationSetBy = Automatic
+
+	column QuantitySold
+		dataType: double
+		lineageTag: 81a872b8-37b8-411c-ba02-71de246c3b84
+		summarizeBy: sum
+		sourceColumn: QuantitySold
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column UnitSellingPrice
+		dataType: double
+		lineageTag: 15ca9380-8bb8-4510-ad81-447874cd5bac
+		summarizeBy: sum
+		sourceColumn: UnitSellingPrice
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SalesAmount
+		dataType: double
+		lineageTag: a8fc7caf-eebf-41bc-84e2-6aad51f0c437
+		summarizeBy: sum
+		sourceColumn: SalesAmount
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition FactSales = m
+		mode: import
+		source =
+				let
+				  Source = Sql.Database("(localdb)\MSSQLLocalDB", "FreshHarvest_DW"),
+				  #"Navigation 1" = Source{[Schema = "dbo", Item = "FactSales"]}[Data]
+				in
+				  #"Navigation 1"
+
+	annotation PBI_ResultType = Table
+

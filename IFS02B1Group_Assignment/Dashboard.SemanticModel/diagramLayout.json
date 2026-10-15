@@ -1,0 +1,100 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 51.863458743155235
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 719.39765319072683,
+            "y": 0.039864863235877124
+          },
+          "nodeIndex": "DimCustomer",
+          "nodeLineageTag": "6f656760-d122-475b-8b74-0f9c293a3eb7",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 244.15169024793005,
+            "y": 0
+          },
+          "nodeIndex": "DimDate",
+          "nodeLineageTag": "233d6bfe-50b9-4e75-88a6-e3d122c313fd",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 64.093331472388883,
+            "y": 393.06675483603289
+          },
+          "nodeIndex": "DimProduct",
+          "nodeLineageTag": "2466424c-3316-4044-b090-31d5869f5130",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 715.167423709219,
+            "y": 581.23616274470123
+          },
+          "nodeIndex": "DimRoute",
+          "nodeLineageTag": "774cf3bc-2280-4d13-a711-131a3482487c",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 382.34872780650448,
+            "y": 660.18198352162085
+          },
+          "nodeIndex": "DimStatus",
+          "nodeLineageTag": "5162104d-d049-4cc7-ab08-d62649b0270a",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 461.90632582537489,
+            "y": 290.62104608006354
+          },
+          "nodeIndex": "FactSales",
+          "nodeLineageTag": "77181f70-ca8b-4590-b24c-dcb478f1e31a",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 70.955543900969175,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

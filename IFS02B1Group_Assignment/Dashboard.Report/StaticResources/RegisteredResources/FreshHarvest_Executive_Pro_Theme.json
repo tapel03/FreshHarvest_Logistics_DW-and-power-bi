@@ -1,0 +1,21 @@
+{
+  "name": "FreshHarvest Executive Pro",
+  "dataColors": [
+    "#00D9A3",
+    "#4F7CFF",
+    "#F6C344",
+    "#22D3EE",
+    "#A78BFA",
+    "#FF5D73",
+    "#F97316",
+    "#38BDF8"
+  ],
+  "background": "#06111F",
+  "foreground": "#F8FAFC",
+  "tableAccent": "#00D9A3",
+  "firstLevelElements": "#F8FAFC",
+  "secondLevelElements": "#A8B7C7",
+  "thirdLevelElements": "#20334A",
+  "fourthLevelElements": "#7F93A8",
+  "secondaryBackground": "#0E1D30"
+}
